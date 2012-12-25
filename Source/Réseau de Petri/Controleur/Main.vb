@@ -1,5 +1,8 @@
 ﻿Imports System
 Imports System.ComponentModel 'Importation necessaire à l'utilisation des bindingList
+Imports System.IO
+Imports System.Runtime.Serialization.Formatters.Binary
+Imports System.Xml.Serialization
 ''' <summary>
 ''' Cette classe réalise à la fois la vue et à la fois le controlleur principale de l'apllication.
 ''' </summary>
@@ -94,5 +97,29 @@ Public Class Main
         ReseauDePetri.EnvoyerReseauChange("Le réseau a été remis à zéro." & vbCrLf, Color.LimeGreen)
         Maj_Treeview()
     End Sub
+    Private Sub SauvegarderLaSimulationToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SauvegarderLaSimulationToolStripMenuItem.Click
+        Dim path As String = "serialisation.srp"
+        Serialisation(path)
+    End Sub
+#End Region
+#Region "Serialisation et séserialisation"
+    Public Sub Serialisation(ByVal _path As String)
+        Dim xmlFichier As FileStream = File.Create("serialise.xml")
+        Dim bf_place As XmlSerializer = New XmlSerializer(GetType(BindingList(Of Place)))
+        Dim bf_trans As XmlSerializer = New XmlSerializer(GetType(BindingList(Of Transition)))
+        Dim bf_arc As XmlSerializer = New XmlSerializer(GetType(List(Of Arc)))
+
+        bf_place.Serialize(xmlFichier, ReseauDePetri.TableauPlace)
+        bf_trans.Serialize(xmlFichier, ReseauDePetri.TableauTransition)
+        bf_arc.Serialize(xmlFichier, ReseauDePetri.TableauArc)
+        xmlFichier.Close()
+    End Sub
+    Public Sub DeSerialisation()
+        Dim bf As BinaryFormatter = New BinaryFormatter()
+        Dim xmlFichier As FileStream = New FileStream("serialise.srp", FileMode.Truncate, FileAccess.ReadWrite)
+        Dim ReseauDePetri As List(Of Place) = CType(bf.Deserialize(xmlFichier), List(Of Place))
+        xmlFichier.Close()
+    End Sub
+
 #End Region
 End Class

@@ -3,11 +3,15 @@
 ''' Elle ne comporte qu'un seul attribut privé, son nom.
 ''' </summary>
 ''' <remarks>Pour plus d'information sur la partie théorique : http://fr.wikipedia.org/wiki/R%C3%A9seau_de_Petri </remarks>
+<Serializable()>
 Public Class Transition
 #Region "Attribut Privé"
     Private _nom As String
 #End Region
 #Region "Constructeur"
+    Public Sub New()
+
+    End Sub
     Public Sub New(ByVal p_nom As String)
         _nom = p_nom
     End Sub

@@ -3,12 +3,16 @@
 ''' Elle a un nom et un nombre de jetons.
 ''' </summary>
 ''' <remarks>Pour plus d'information sur la partie théorique : http://fr.wikipedia.org/wiki/R%C3%A9seau_de_Petri </remarks>
+<Serializable()>
 Public Class Place
 #Region "Attributs privés"
     Private _nom As String
     Private _nombreJeton As UInteger
 #End Region
 #Region "Constructeur"
+    Public Sub New()
+
+    End Sub
     Public Sub New(ByVal p_nombre As UInteger, ByVal p_nom As String)
         _nombreJeton = p_nombre
         _nom = p_nom

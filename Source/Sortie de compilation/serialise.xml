@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<ArrayOfPlace xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Place>
+    <nom>S</nom>
+    <nombreJeton>0</nombreJeton>
+  </Place>
+</ArrayOfPlace><?xml version="1.0"?>
+<ArrayOfTransition xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Transition>
+    <nom>T</nom>
+  </Transition>
+</ArrayOfTransition><?xml version="1.0"?>
+<ArrayOfArc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Arc>
+    <place>
+      <nom>S</nom>
+      <nombreJeton>0</nombreJeton>
+    </place>
+    <transition>
+      <nom>T</nom>
+    </transition>
+    <multiplicite>1</multiplicite>
+    <sens>PlaceVersTransition</sens>
+  </Arc>
+</ArrayOfArc>

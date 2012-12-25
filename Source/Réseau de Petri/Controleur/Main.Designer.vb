@@ -34,6 +34,7 @@ Partial Class Main
         Me.Label9 = New System.Windows.Forms.Label()
         Me.B_AddArc = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.B_Go = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -64,7 +65,7 @@ Partial Class Main
         Me.DonnéesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AideToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.SauvegarderLaSimulationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabaArc.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -208,6 +209,16 @@ Partial Class Main
         Me.GroupBox3.TabIndex = 3
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Paramêtres de simulation"
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(151, 92)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(246, 21)
+        Me.CheckBox1.TabIndex = 4
+        Me.CheckBox1.Text = "Afficher les données de simulation"
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'Label8
         '
@@ -448,7 +459,7 @@ Partial Class Main
         '
         'SimulationToolStripMenuItem
         '
-        Me.SimulationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NouvelleSimulationToolStripMenuItem, Me.ChargerSimulationToolStripMenuItem, Me.ToolStripSeparator1, Me.LancerLaSimulationToolStripMenuItem, Me.ToolStripSeparator2, Me.QuitterToolStripMenuItem})
+        Me.SimulationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NouvelleSimulationToolStripMenuItem, Me.ChargerSimulationToolStripMenuItem, Me.SauvegarderLaSimulationToolStripMenuItem, Me.ToolStripSeparator1, Me.LancerLaSimulationToolStripMenuItem, Me.ToolStripSeparator2, Me.QuitterToolStripMenuItem})
         Me.SimulationToolStripMenuItem.Name = "SimulationToolStripMenuItem"
         Me.SimulationToolStripMenuItem.Size = New System.Drawing.Size(94, 24)
         Me.SimulationToolStripMenuItem.Text = "Simulation"
@@ -456,35 +467,35 @@ Partial Class Main
         'NouvelleSimulationToolStripMenuItem
         '
         Me.NouvelleSimulationToolStripMenuItem.Name = "NouvelleSimulationToolStripMenuItem"
-        Me.NouvelleSimulationToolStripMenuItem.Size = New System.Drawing.Size(215, 24)
+        Me.NouvelleSimulationToolStripMenuItem.Size = New System.Drawing.Size(256, 24)
         Me.NouvelleSimulationToolStripMenuItem.Text = "Nouvelle simulation"
         '
         'ChargerSimulationToolStripMenuItem
         '
         Me.ChargerSimulationToolStripMenuItem.Name = "ChargerSimulationToolStripMenuItem"
-        Me.ChargerSimulationToolStripMenuItem.Size = New System.Drawing.Size(215, 24)
+        Me.ChargerSimulationToolStripMenuItem.Size = New System.Drawing.Size(256, 24)
         Me.ChargerSimulationToolStripMenuItem.Text = "Charger simulation"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(212, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(253, 6)
         '
         'LancerLaSimulationToolStripMenuItem
         '
         Me.LancerLaSimulationToolStripMenuItem.Name = "LancerLaSimulationToolStripMenuItem"
-        Me.LancerLaSimulationToolStripMenuItem.Size = New System.Drawing.Size(215, 24)
+        Me.LancerLaSimulationToolStripMenuItem.Size = New System.Drawing.Size(256, 24)
         Me.LancerLaSimulationToolStripMenuItem.Text = "Lancer la simulation"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(212, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(253, 6)
         '
         'QuitterToolStripMenuItem
         '
         Me.QuitterToolStripMenuItem.Name = "QuitterToolStripMenuItem"
-        Me.QuitterToolStripMenuItem.Size = New System.Drawing.Size(215, 24)
+        Me.QuitterToolStripMenuItem.Size = New System.Drawing.Size(256, 24)
         Me.QuitterToolStripMenuItem.Text = "Quitter"
         '
         'DonnéesToolStripMenuItem
@@ -510,15 +521,11 @@ Partial Class Main
         Me.MenuStrip1.TabIndex = 9
         Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'CheckBox1
+        'SauvegarderLaSimulationToolStripMenuItem
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(151, 92)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(246, 21)
-        Me.CheckBox1.TabIndex = 4
-        Me.CheckBox1.Text = "Afficher les données de simulation"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.SauvegarderLaSimulationToolStripMenuItem.Name = "SauvegarderLaSimulationToolStripMenuItem"
+        Me.SauvegarderLaSimulationToolStripMenuItem.Size = New System.Drawing.Size(256, 24)
+        Me.SauvegarderLaSimulationToolStripMenuItem.Text = "Sauvegarder la simulation"
         '
         'Main
         '
@@ -593,5 +600,6 @@ Partial Class Main
     Friend WithEvents LancerLaSimulationToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents SauvegarderLaSimulationToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

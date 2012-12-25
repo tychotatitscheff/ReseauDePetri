@@ -1,10 +1,10 @@
 ﻿Imports System.ComponentModel 'Importation necessaire à l'utilisation des bindingList
-Imports System.Xml.Serialization
 ''' <summary>
 ''' La classe réseau rassemble les différents éléments du réseau. Elle comprend donc les listes de place, de transition et d'arc ainsi que les différentes méthodes permettant de mettre à jour le réseau, de selectionner une transition au hasard et de la valider.
 ''' Elle comprend également la gestion des évenements pour afficher le processus de simulation.
 ''' </summary>
 ''' <remarks>Pour plus d'information sur la partie théorique : http://fr.wikipedia.org/wiki/R%C3%A9seau_de_Petri </remarks>
+<Serializable()>
 Public Class Reseau
 #Region "Attributs privés"
     ''' <remarks>L'utilisation de BindingList se justifie pour syncroniser la liste des places avec le combobox de la fenètre principale</remarks>
@@ -13,9 +13,9 @@ Public Class Reseau
     Private T_Transition As New BindingList(Of Transition)
     Private T_Arc As New List(Of Arc)
 #Region "Attributs necessitant une fonction de mise à jour"
-    Private T_TransitionValidable As New List(Of Transition)
-    Private T_ArcRentrant As New List(Of Arc)
-    Private T_ArcSortant As New List(Of Arc)
+    <NonSerialized()> Private T_TransitionValidable As New List(Of Transition)
+    <NonSerialized()> Private T_ArcRentrant As New List(Of Arc)
+    <NonSerialized()> Private T_ArcSortant As New List(Of Arc)
 #End Region
 #End Region
 #Region "Gestion évenements"

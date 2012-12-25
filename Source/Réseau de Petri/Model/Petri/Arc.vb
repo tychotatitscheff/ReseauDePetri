@@ -4,6 +4,7 @@
 ''' Nous avons fait le choix d'implémenter la multiplicité et ainsi de rajouter un attribut multiplicité.
 ''' </summary>
 ''' <remarks>Pour plus d'information sur la partie théorique : http://fr.wikipedia.org/wiki/R%C3%A9seau_de_Petri </remarks>
+<Serializable()>
 Public Class Arc
 #Region "Enumération définissant le sens"
     Public Enum E_Sens As Integer
@@ -18,6 +19,9 @@ Public Class Arc
     Private _sens As E_Sens
 #End Region
 #Region "Constructeurs (1 surcharge)"
+    Public Sub New()
+
+    End Sub
     Public Sub New(ByVal p_place As Place, ByVal p_transition As Transition, ByVal p_sens As E_Sens, ByVal p_mult As UInteger)
         _Place = p_place
         _Transition = p_transition
