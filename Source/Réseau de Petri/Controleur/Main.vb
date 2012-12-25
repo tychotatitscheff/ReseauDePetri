@@ -1,8 +1,10 @@
-﻿Imports System
+﻿#Region "Importations namespaces"
+Imports System
 Imports System.ComponentModel 'Importation necessaire à l'utilisation des bindingList
 Imports System.IO
 Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.Xml.Serialization
+#End Region
 ''' <summary>
 ''' Cette classe réalise à la fois la vue et à la fois le controlleur principale de l'apllication.
 ''' </summary>
@@ -101,25 +103,27 @@ Public Class Main
         Dim path As String = "serialisation.srp"
         Serialisation(path)
     End Sub
+
+    Private Sub ChargerSimulationToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChargerSimulationToolStripMenuItem.Click
+        Dim path As String = "serialisation.srp"
+        DeSerialisation(path)
+        Maj_Treeview()
+        ReseauDePetri.EnvoyerReseauChange("Le fichier " & path & " a été convenablement chargé." & vbCrLf)
+        ReseauDePetri.GenererEtat()
+    End Sub
 #End Region
-#Region "Serialisation et séserialisation"
+#Region "Serialisation et déserialisation"
     Public Sub Serialisation(ByVal _path As String)
         Dim xmlFichier As FileStream = File.Create("serialise.xml")
-        Dim bf_place As XmlSerializer = New XmlSerializer(GetType(BindingList(Of Place)))
-        Dim bf_trans As XmlSerializer = New XmlSerializer(GetType(BindingList(Of Transition)))
-        Dim bf_arc As XmlSerializer = New XmlSerializer(GetType(List(Of Arc)))
-
-        bf_place.Serialize(xmlFichier, ReseauDePetri.TableauPlace)
-        bf_trans.Serialize(xmlFichier, ReseauDePetri.TableauTransition)
-        bf_arc.Serialize(xmlFichier, ReseauDePetri.TableauArc)
+        Dim bf_reseau As XmlSerializer = New XmlSerializer(GetType(Reseau))
+        bf_reseau.Serialize(xmlFichier, ReseauDePetri)
         xmlFichier.Close()
     End Sub
-    Public Sub DeSerialisation()
-        Dim bf As BinaryFormatter = New BinaryFormatter()
-        Dim xmlFichier As FileStream = New FileStream("serialise.srp", FileMode.Truncate, FileAccess.ReadWrite)
-        Dim ReseauDePetri As List(Of Place) = CType(bf.Deserialize(xmlFichier), List(Of Place))
+    Public Sub DeSerialisation(ByVal _path As String)
+        Dim bf_reseau As XmlSerializer = New XmlSerializer(GetType(Reseau))
+        Dim xmlFichier As FileStream = File.Open("serialise.xml", FileMode.Truncate, FileAccess.ReadWrite)
+        Dim ReseauDePetri As Reseau = CType(bf_reseau.Deserialize(xmlFichier), Reseau)
         xmlFichier.Close()
     End Sub
-
 #End Region
 End Class

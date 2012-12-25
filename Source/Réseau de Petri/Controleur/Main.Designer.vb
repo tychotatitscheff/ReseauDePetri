@@ -66,6 +66,7 @@ Partial Class Main
         Me.AideToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.SauvegarderLaSimulationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SauvegarderLesDonnéesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabaArc.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -473,8 +474,8 @@ Partial Class Main
         'ChargerSimulationToolStripMenuItem
         '
         Me.ChargerSimulationToolStripMenuItem.Name = "ChargerSimulationToolStripMenuItem"
-        Me.ChargerSimulationToolStripMenuItem.Size = New System.Drawing.Size(256, 24)
-        Me.ChargerSimulationToolStripMenuItem.Text = "Charger simulation"
+        Me.ChargerSimulationToolStripMenuItem.Size = New System.Drawing.Size(272, 24)
+        Me.ChargerSimulationToolStripMenuItem.Text = "Charger simulation ..."
         '
         'ToolStripSeparator1
         '
@@ -500,6 +501,7 @@ Partial Class Main
         '
         'DonnéesToolStripMenuItem
         '
+        Me.DonnéesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SauvegarderLesDonnéesToolStripMenuItem})
         Me.DonnéesToolStripMenuItem.Name = "DonnéesToolStripMenuItem"
         Me.DonnéesToolStripMenuItem.Size = New System.Drawing.Size(81, 24)
         Me.DonnéesToolStripMenuItem.Text = "Données"
@@ -524,8 +526,14 @@ Partial Class Main
         'SauvegarderLaSimulationToolStripMenuItem
         '
         Me.SauvegarderLaSimulationToolStripMenuItem.Name = "SauvegarderLaSimulationToolStripMenuItem"
-        Me.SauvegarderLaSimulationToolStripMenuItem.Size = New System.Drawing.Size(256, 24)
-        Me.SauvegarderLaSimulationToolStripMenuItem.Text = "Sauvegarder la simulation"
+        Me.SauvegarderLaSimulationToolStripMenuItem.Size = New System.Drawing.Size(272, 24)
+        Me.SauvegarderLaSimulationToolStripMenuItem.Text = "Sauvegarder la simulation ..."
+        '
+        'SauvegarderLesDonnéesToolStripMenuItem
+        '
+        Me.SauvegarderLesDonnéesToolStripMenuItem.Name = "SauvegarderLesDonnéesToolStripMenuItem"
+        Me.SauvegarderLesDonnéesToolStripMenuItem.Size = New System.Drawing.Size(249, 24)
+        Me.SauvegarderLesDonnéesToolStripMenuItem.Text = "Sauvegarder les données"
         '
         'Main
         '
@@ -601,5 +609,6 @@ Partial Class Main
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents SauvegarderLaSimulationToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SauvegarderLesDonnéesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

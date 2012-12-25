@@ -18,6 +18,9 @@ Public Class Reseau
     <NonSerialized()> Private T_ArcSortant As New List(Of Arc)
 #End Region
 #End Region
+    Public Sub New()
+
+    End Sub
 #Region "Gestion évenements"
     Public Delegate Sub ReseauChangeEventHandler(ByVal sender As Object, ByVal e As ChangementReseauEventArgs)
     Public Event ReseauChange As ReseauChangeEventHandler
