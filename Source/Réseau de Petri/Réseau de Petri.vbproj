@@ -37,7 +37,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Sortie de compilation\</OutputPath>
     <DocumentationFile>Réseau de Petri.xml</DocumentationFile>
     <NoWarn>
     </NoWarn>
