@@ -58,15 +58,17 @@ Partial Class Main
         Me.SimulationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NouvelleSimulationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChargerSimulationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SauvegarderLaSimulationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.LancerLaSimulationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.QuitterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DonnéesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SauvegarderLesDonnéesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AideToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.SauvegarderLaSimulationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SauvegarderLesDonnéesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OFD_chargement = New System.Windows.Forms.OpenFileDialog()
+        Me.SFD_enregistrement = New System.Windows.Forms.SaveFileDialog()
         Me.TabaArc.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -468,7 +470,7 @@ Partial Class Main
         'NouvelleSimulationToolStripMenuItem
         '
         Me.NouvelleSimulationToolStripMenuItem.Name = "NouvelleSimulationToolStripMenuItem"
-        Me.NouvelleSimulationToolStripMenuItem.Size = New System.Drawing.Size(256, 24)
+        Me.NouvelleSimulationToolStripMenuItem.Size = New System.Drawing.Size(272, 24)
         Me.NouvelleSimulationToolStripMenuItem.Text = "Nouvelle simulation"
         '
         'ChargerSimulationToolStripMenuItem
@@ -477,26 +479,32 @@ Partial Class Main
         Me.ChargerSimulationToolStripMenuItem.Size = New System.Drawing.Size(272, 24)
         Me.ChargerSimulationToolStripMenuItem.Text = "Charger simulation ..."
         '
+        'SauvegarderLaSimulationToolStripMenuItem
+        '
+        Me.SauvegarderLaSimulationToolStripMenuItem.Name = "SauvegarderLaSimulationToolStripMenuItem"
+        Me.SauvegarderLaSimulationToolStripMenuItem.Size = New System.Drawing.Size(272, 24)
+        Me.SauvegarderLaSimulationToolStripMenuItem.Text = "Sauvegarder la simulation ..."
+        '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(253, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(269, 6)
         '
         'LancerLaSimulationToolStripMenuItem
         '
         Me.LancerLaSimulationToolStripMenuItem.Name = "LancerLaSimulationToolStripMenuItem"
-        Me.LancerLaSimulationToolStripMenuItem.Size = New System.Drawing.Size(256, 24)
+        Me.LancerLaSimulationToolStripMenuItem.Size = New System.Drawing.Size(272, 24)
         Me.LancerLaSimulationToolStripMenuItem.Text = "Lancer la simulation"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(253, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(269, 6)
         '
         'QuitterToolStripMenuItem
         '
         Me.QuitterToolStripMenuItem.Name = "QuitterToolStripMenuItem"
-        Me.QuitterToolStripMenuItem.Size = New System.Drawing.Size(256, 24)
+        Me.QuitterToolStripMenuItem.Size = New System.Drawing.Size(272, 24)
         Me.QuitterToolStripMenuItem.Text = "Quitter"
         '
         'DonnéesToolStripMenuItem
@@ -505,6 +513,12 @@ Partial Class Main
         Me.DonnéesToolStripMenuItem.Name = "DonnéesToolStripMenuItem"
         Me.DonnéesToolStripMenuItem.Size = New System.Drawing.Size(81, 24)
         Me.DonnéesToolStripMenuItem.Text = "Données"
+        '
+        'SauvegarderLesDonnéesToolStripMenuItem
+        '
+        Me.SauvegarderLesDonnéesToolStripMenuItem.Name = "SauvegarderLesDonnéesToolStripMenuItem"
+        Me.SauvegarderLesDonnéesToolStripMenuItem.Size = New System.Drawing.Size(249, 24)
+        Me.SauvegarderLesDonnéesToolStripMenuItem.Text = "Sauvegarder les données"
         '
         'AideToolStripMenuItem
         '
@@ -523,17 +537,16 @@ Partial Class Main
         Me.MenuStrip1.TabIndex = 9
         Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'SauvegarderLaSimulationToolStripMenuItem
+        'OFD_chargement
         '
-        Me.SauvegarderLaSimulationToolStripMenuItem.Name = "SauvegarderLaSimulationToolStripMenuItem"
-        Me.SauvegarderLaSimulationToolStripMenuItem.Size = New System.Drawing.Size(272, 24)
-        Me.SauvegarderLaSimulationToolStripMenuItem.Text = "Sauvegarder la simulation ..."
+        Me.OFD_chargement.DefaultExt = "srp"
+        Me.OFD_chargement.FileName = "OFD_1"
+        Me.OFD_chargement.Filter = "Fichier de simulation | *.srp | Tous les fichiers | *.*"
+        Me.OFD_chargement.Title = "Charger un fichier de simulation"
         '
-        'SauvegarderLesDonnéesToolStripMenuItem
+        'SFD_enregistrement
         '
-        Me.SauvegarderLesDonnéesToolStripMenuItem.Name = "SauvegarderLesDonnéesToolStripMenuItem"
-        Me.SauvegarderLesDonnéesToolStripMenuItem.Size = New System.Drawing.Size(249, 24)
-        Me.SauvegarderLesDonnéesToolStripMenuItem.Text = "Sauvegarder les données"
+        Me.SFD_enregistrement.Filter = "Fichier de simulation | *.srp | Tous les fichiers | *.*"
         '
         'Main
         '
@@ -610,5 +623,7 @@ Partial Class Main
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents SauvegarderLaSimulationToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SauvegarderLesDonnéesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OFD_chargement As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents SFD_enregistrement As System.Windows.Forms.SaveFileDialog
 
 End Class

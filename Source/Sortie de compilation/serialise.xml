@@ -2,64 +2,12 @@
 <Reseau xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <TableauPlace>
     <Place>
-      <nom>S</nom>
-      <nombreJeton>0</nombreJeton>
-    </Place>
-    <Place>
-      <nom>R</nom>
-      <nombreJeton>0</nombreJeton>
-    </Place>
-    <Place>
-      <nom>T</nom>
+      <nom>Saut</nom>
       <nombreJeton>0</nombreJeton>
     </Place>
   </TableauPlace>
-  <TableauTransition>
-    <Transition>
-      <nom>A</nom>
-    </Transition>
-    <Transition>
-      <nom>B</nom>
-    </Transition>
-    <Transition>
-      <nom>C</nom>
-    </Transition>
-  </TableauTransition>
-  <TableauArc>
-    <Arc>
-      <place>
-        <nom>R</nom>
-        <nombreJeton>0</nombreJeton>
-      </place>
-      <transition>
-        <nom>A</nom>
-      </transition>
-      <multiplicite>1</multiplicite>
-      <sens>Place vers transition</sens>
-    </Arc>
-    <Arc>
-      <place>
-        <nom>R</nom>
-        <nombreJeton>0</nombreJeton>
-      </place>
-      <transition>
-        <nom>C</nom>
-      </transition>
-      <multiplicite>1</multiplicite>
-      <sens>Place vers transition</sens>
-    </Arc>
-    <Arc>
-      <place>
-        <nom>T</nom>
-        <nombreJeton>0</nombreJeton>
-      </place>
-      <transition>
-        <nom>C</nom>
-      </transition>
-      <multiplicite>1</multiplicite>
-      <sens>Place vers transition</sens>
-    </Arc>
-  </TableauArc>
+  <TableauTransition />
+  <TableauArc />
   <TableauTransitionValidable />
   <TableauArcRentrant />
   <TableauArcSortant />

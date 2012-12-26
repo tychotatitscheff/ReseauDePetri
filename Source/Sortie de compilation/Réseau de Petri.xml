@@ -50,7 +50,7 @@ RéseaudePetri
 </summary>
 </member><member name="T:RDP.Main">
 	<summary>
- Cette classe réalise à la fois la vue et à la fois le controlleur principale de l'apllication.
+ Cette classe réalise à la fois la vue et à la fois le controlleur principale de l'application.
  </summary>
 	<remarks></remarks>
 </member><member name="T:RDP.ChangementReseauEventArgs">
