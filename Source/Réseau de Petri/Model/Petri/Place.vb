@@ -1,4 +1,5 @@
-﻿''' <summary>
+﻿Imports System.Xml.Serialization
+''' <summary>
 ''' La classe Place represente les place dans le réseau de Pétri.
 ''' Elle a un nom et un nombre de jetons.
 ''' </summary>
@@ -6,8 +7,8 @@
 <Serializable()>
 Public Class Place
 #Region "Attributs privés"
-    Private _nom As String
-    Private _nombreJeton As UInteger
+    <XmlAttribute("Nom")> Private _nom As String
+    <XmlElement("Nombre de jeton")> Private _nombreJeton As UInteger
 #End Region
 #Region "Constructeur"
     Public Sub New()

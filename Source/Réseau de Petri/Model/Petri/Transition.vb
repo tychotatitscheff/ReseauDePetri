@@ -1,4 +1,5 @@
-﻿''' <summary>
+﻿Imports System.Xml.Serialization
+''' <summary>
 ''' La classe transition représente les transitions dans un réseau de pétri.
 ''' Elle ne comporte qu'un seul attribut privé, son nom.
 ''' </summary>
@@ -6,7 +7,7 @@
 <Serializable()>
 Public Class Transition
 #Region "Attribut Privé"
-    Private _nom As String
+    <XmlAttribute("Nom")> Private _nom As String
 #End Region
 #Region "Constructeur"
     Public Sub New()

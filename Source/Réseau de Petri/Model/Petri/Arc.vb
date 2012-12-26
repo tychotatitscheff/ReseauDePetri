@@ -1,4 +1,5 @@
-﻿''' <summary>
+﻿Imports System.Xml.Serialization
+''' <summary>
 ''' Cette classe définit les arcs orientés reliant place et transition.
 ''' Elle comporte trois éléments, une place, une transition et un sens ce qui impose la création d'une enumération "sens".
 ''' Nous avons fait le choix d'implémenter la multiplicité et ainsi de rajouter un attribut multiplicité.
@@ -8,15 +9,15 @@
 Public Class Arc
 #Region "Enumération définissant le sens"
     Public Enum E_Sens As Integer
-        PlaceVersTransition = 1
-        TransitionVersPlace = 2
+        <XmlEnum("Place vers transition")> PlaceVersTransition = 1
+        <XmlEnum("Tarnsition vers place")> TransitionVersPlace = 2
     End Enum
 #End Region
 #Region "Attributs Privés"
-    Private _Place As Place
-    Private _Transition As Transition
-    Private _multiplicite As UInteger
-    Private _sens As E_Sens
+    <XmlElement("Place")> Private _Place As Place
+    <XmlElement("Transition")> Private _Transition As Transition
+    <XmlElement("Multiplicité")> Private _multiplicite As UInteger
+    <XmlElement("Sens")> Private _sens As E_Sens
 #End Region
 #Region "Constructeurs (1 surcharge)"
     Public Sub New()

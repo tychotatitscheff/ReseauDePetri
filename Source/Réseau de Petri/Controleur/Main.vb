@@ -121,8 +121,9 @@ Public Class Main
     End Sub
     Public Sub DeSerialisation(ByVal _path As String)
         Dim bf_reseau As XmlSerializer = New XmlSerializer(GetType(Reseau))
-        Dim xmlFichier As FileStream = File.Open("serialise.xml", FileMode.Truncate, FileAccess.ReadWrite)
-        Dim ReseauDePetri As Reseau = CType(bf_reseau.Deserialize(xmlFichier), Reseau)
+        Dim xmlFichier As FileStream = New FileStream("serialise.xml", FileMode.Open, FileAccess.Read)
+        xmlFichier.Seek(0, IO.SeekOrigin.Begin)
+        ReseauDePetri = CType(bf_reseau.Deserialize(xmlFichier), Reseau)
         xmlFichier.Close()
     End Sub
 #End Region
