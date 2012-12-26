@@ -24,7 +24,7 @@ Partial Class Main
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.CB_Sens = New System.Windows.Forms.ComboBox()
+        Me.CB_sens = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -35,6 +35,8 @@ Partial Class Main
         Me.Label9 = New System.Windows.Forms.Label()
         Me.B_AddArc = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.TB_etapeMax = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.ChB_verbose = New System.Windows.Forms.CheckBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.B_Go = New System.Windows.Forms.Button()
@@ -70,8 +72,6 @@ Partial Class Main
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.OFD_chargement = New System.Windows.Forms.OpenFileDialog()
         Me.SFD_enregistrement = New System.Windows.Forms.SaveFileDialog()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.TB_etapeMax = New System.Windows.Forms.TextBox()
         Me.TabaArc.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,17 +94,17 @@ Partial Class Main
         Me.Label6.TabIndex = 7
         Me.Label6.Text = "Nom"
         '
-        'CB_Sens
+        'CB_sens
         '
-        Me.CB_Sens.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CB_Sens.FormattingEnabled = True
-        Me.CB_Sens.Items.AddRange(New Object() {"P -> T", "T -> P"})
-        Me.CB_Sens.Location = New System.Drawing.Point(68, 104)
-        Me.CB_Sens.Margin = New System.Windows.Forms.Padding(3, 20, 3, 3)
-        Me.CB_Sens.Name = "CB_Sens"
-        Me.CB_Sens.Size = New System.Drawing.Size(67, 24)
-        Me.CB_Sens.TabIndex = 9
-        Me.CB_Sens.Text = "T -> B"
+        Me.CB_sens.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CB_sens.FormattingEnabled = True
+        Me.CB_sens.Items.AddRange(New Object() {"P -> T", "T -> P"})
+        Me.CB_sens.Location = New System.Drawing.Point(68, 104)
+        Me.CB_sens.Margin = New System.Windows.Forms.Padding(3, 20, 3, 3)
+        Me.CB_sens.Name = "CB_sens"
+        Me.CB_sens.Size = New System.Drawing.Size(67, 24)
+        Me.CB_sens.TabIndex = 9
+        Me.CB_sens.Text = "P -> T"
         '
         'Label3
         '
@@ -157,7 +157,7 @@ Partial Class Main
         '
         Me.TabaArc.Controls.Add(Me.TB_mult)
         Me.TabaArc.Controls.Add(Me.Label9)
-        Me.TabaArc.Controls.Add(Me.CB_Sens)
+        Me.TabaArc.Controls.Add(Me.CB_sens)
         Me.TabaArc.Controls.Add(Me.Label3)
         Me.TabaArc.Controls.Add(Me.Label2)
         Me.TabaArc.Controls.Add(Me.Label1)
@@ -217,6 +217,23 @@ Partial Class Main
         Me.GroupBox3.TabIndex = 3
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Paramêtres de simulation"
+        '
+        'TB_etapeMax
+        '
+        Me.TB_etapeMax.Location = New System.Drawing.Point(227, 150)
+        Me.TB_etapeMax.Name = "TB_etapeMax"
+        Me.TB_etapeMax.Size = New System.Drawing.Size(100, 22)
+        Me.TB_etapeMax.TabIndex = 6
+        Me.TB_etapeMax.Text = "1000"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(9, 150)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(156, 17)
+        Me.Label10.TabIndex = 5
+        Me.Label10.Text = "Etapes max simulation :"
         '
         'ChB_verbose
         '
@@ -548,30 +565,12 @@ Partial Class Main
         'OFD_chargement
         '
         Me.OFD_chargement.DefaultExt = "srp"
-        Me.OFD_chargement.FileName = "OFD_1"
-        Me.OFD_chargement.Filter = "Fichier de simulation | *.srp | Tous les fichiers | *.*"
+        Me.OFD_chargement.Filter = "Fichier de simulation|*.srp|Tous les fichiers|*.*"
         Me.OFD_chargement.Title = "Charger un fichier de simulation"
         '
         'SFD_enregistrement
         '
-        Me.SFD_enregistrement.Filter = "Fichier de simulation | *.srp | Tous les fichiers | *.*"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(9, 150)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(156, 17)
-        Me.Label10.TabIndex = 5
-        Me.Label10.Text = "Etapes max simulation :"
-        '
-        'TB_etapeMax
-        '
-        Me.TB_etapeMax.Location = New System.Drawing.Point(227, 150)
-        Me.TB_etapeMax.Name = "TB_etapeMax"
-        Me.TB_etapeMax.Size = New System.Drawing.Size(100, 22)
-        Me.TB_etapeMax.TabIndex = 6
-        Me.TB_etapeMax.Text = "1000"
+        Me.SFD_enregistrement.Filter = "Fichier de simulation|*.srp|Tous les fichiers|*.*"
         '
         'Main
         '
@@ -605,7 +604,7 @@ Partial Class Main
 
     End Sub
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents CB_Sens As System.Windows.Forms.ComboBox
+    Friend WithEvents CB_sens As System.Windows.Forms.ComboBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label

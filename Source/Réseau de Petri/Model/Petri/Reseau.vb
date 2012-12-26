@@ -182,25 +182,49 @@ Public Class Reseau
         tree.Nodes.Add("Arc", "Arc")
         'Maj des nodes destinés aux places
         For Each _place In T_Place
-            If _place IsNot Nothing Then
-                tree.Nodes("Places").Nodes.Add(CStr(_place.GetHashCode), "[" & _place.GetHashCode & "] : '" & _place.nom & "' (" & _place.nombreJeton & " jetons)")
-            End If
+                Dim hash As String
+                If Main.ChB_verbose.Checked Then
+                    hash = " [" & _place.GetHashCode & "]"
+                Else
+                    hash = ""
+                End If
+                tree.Nodes("Places").Nodes.Add(CStr(_place.GetHashCode), "'" & _place.nom & "' (" & _place.nombreJeton & " jetons)" & hash)
         Next
         'Maj des nodes destinés aux transitions
         For Each _trans In T_Transition
-            tree.Nodes("Transitions").Nodes.Add(CStr(_trans.GetHashCode), "[" & _trans.GetHashCode & "] : '" & _trans.nom & "' ")
+            Dim hash As String
+            If Main.ChB_verbose.Checked Then
+                hash = " [" & _trans.GetHashCode & "]"
+            Else
+                hash = ""
+            End If
+            tree.Nodes("Transitions").Nodes.Add(CStr(_trans.GetHashCode), "'" & _trans.nom & "' " & hash)
         Next
         'Maj des nodes destinés aux arcs
         For Each _arc In T_Arc
-            If _arc.sens = Arc.E_Sens.PlaceVersTransition Then
-                tree.Nodes("Arc").Nodes.Add(CStr(_arc.GetHashCode), "[" & _arc.GetHashCode & "] : " & _arc.place.nom & " -> " & _arc.transition.nom & " [x" & _arc.multiplicite & "]")
+            Dim hasharc, hashplace, hashtrans As String
+            If Main.ChB_verbose.Checked Then
+                hasharc = " [" & _arc.GetHashCode & "]"
+                hashplace = " [" & _arc.place.GetHashCode & "]"
+                hashtrans = " [" & _arc.place.GetHashCode & "]"
             Else
-                tree.Nodes("Arc").Nodes.Add(CStr(_arc.GetHashCode), "[" & _arc.GetHashCode & "] : " & _arc.transition.nom & " -> " & _arc.place.nom & " [x" & _arc.multiplicite & "]")
+                hasharc = ""
+                hashplace = ""
+                hashtrans = ""
+            End If
+            If _arc.sens = Arc.E_Sens.PlaceVersTransition Then
+
+                tree.Nodes("Arc").Nodes.Add(CStr(_arc.GetHashCode), _arc.place.nom & hashplace & " -> " & _arc.transition.nom & hashtrans & " [x" & _arc.multiplicite & "]" & hasharc)
+            Else
+                tree.Nodes("Arc").Nodes.Add(CStr(_arc.GetHashCode), _arc.transition.nom & hashtrans & " -> " & _arc.place.nom & hashplace & " [x" & _arc.multiplicite & "]" & hasharc)
             End If
         Next
         Return tree
     End Function
-    Public Sub GenererEtat()
+    Public Sub GenererEtat(Optional ByVal Etat As String = "")
+        If Etat <> "" Then
+            EnvoyerReseauChange("****** Etat " & Etat & " : *******" & vbCrLf, Color.DarkOrange)
+        End If
         For Each _place In T_Place
             If _place.nombreJeton = 0 Then
                 EnvoyerReseauChange("Il ne reste plus de jeton dans la place " & _place.nom & "." & vbCrLf, Color.DarkOrange)

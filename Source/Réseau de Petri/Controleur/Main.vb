@@ -20,7 +20,7 @@ Public Class Main
     End Sub
 #End Region
 #Region "Gestion Treeview"
-    Private Sub Maj_Treeview()
+    Private Sub Maj_Treeview() Handles ChB_verbose.CheckedChanged
         TV_Donnée.Nodes.Clear()
         TV_Donnée.Nodes.Add(ReseauDePetri.RetournerEquivalenceTreeNode())
         TV_Donnée.ExpandAll()
@@ -47,10 +47,10 @@ Public Class Main
     End Sub
     Private Sub B_AddArc_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles B_AddArc.Click
         Dim sens As Arc.E_Sens
-        If CB_Sens.SelectedItem.ToString = "P -> T" Then
+        If CB_sens.SelectedItem.ToString = "P -> T" Then
             sens = Arc.E_Sens.PlaceVersTransition
             ReseauDePetri.EnvoyerReseauChange("L'arc de multiplicité " & TB_mult.Text & " reliant la place '" & CType(CB_place.SelectedItem, Place).nom & "' à la transition '" & CType(CB_trans.SelectedItem, Transition).nom & "' a été ajoutée au réseau." & vbCrLf, Color.Black)
-        ElseIf CB_Sens.SelectedItem.ToString = "T -> P" Then
+        ElseIf CB_sens.SelectedItem.ToString = "T -> P" Then
             sens = Arc.E_Sens.TransitionVersPlace
             ReseauDePetri.EnvoyerReseauChange("L'arc de multiplicité " & TB_mult.Text & "reliant la transition '" & CType(CB_trans.SelectedItem, Transition).nom & "' à la place '" & CType(CB_place.SelectedItem, Place).nom & "' a été ajoutée au réseau." & vbCrLf, Color.Black)
         End If
@@ -65,17 +65,22 @@ Public Class Main
 #End Region
 #Region "Simulation"
     Private Sub B_Go_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles B_Go.Click, LancerLaSimulationToolStripMenuItem.Click
-        ReseauDePetri.GenererEtat()
+        RTB_Console.AppendText(vbCrLf & "**** Début de la simulation ****" & vbCrLf)
+        ReseauDePetri.GenererEtat("Initial")
         RTB_Console.AppendText(vbCrLf)
         RTB_Console.SelectionIndent = 20
         ReseauDePetri.Maj_TransitionValidable()
-        While ReseauDePetri.TableauTransitionValidable.Count > 0
+        Dim index As Integer = 1
+        While ReseauDePetri.TableauTransitionValidable.Count > 0 And index < CInt(TB_etapeMax.Text) + 1
             ReseauDePetri.ValiderTransition(ReseauDePetri.ChoixHasard_TransitionValidable())
             ReseauDePetri.Maj_TransitionValidable()
+            index += 1
         End While
+        RTB_Console.AppendText("La simulation a effectué " & CStr(index - 1) & " étapes" & vbCrLf)
         RTB_Console.SelectionIndent = 0
-        ReseauDePetri.GenererEtat()
         RTB_Console.AppendText(vbCrLf)
+        ReseauDePetri.GenererEtat("Final")
+        RTB_Console.AppendText("**** Fin de Simulation ****" & vbCrLf)
     End Sub
 #End Region
 #Region "Evenement fenetre"
@@ -97,6 +102,14 @@ Public Class Main
         RTB_Console.Clear()
         ReseauDePetri.EnvoyerReseauChange("Le réseau a été remis à zéro." & vbCrLf, Color.LimeGreen)
         Maj_Treeview()
+
+        CB_place.DataSource = Nothing
+        CB_place.Items.Clear()
+        CB_place.DataSource = ReseauDePetri.TableauPlace
+        CB_trans.DataSource = Nothing
+        CB_trans.Items.Clear()
+        CB_trans.DataSource = ReseauDePetri.TableauPlace
+        RaiseEvent MajDataBinding(Me, New MajDataBindingEventArgs())
     End Sub
     Private Sub SauvegarderLaSimulationToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SauvegarderLaSimulationToolStripMenuItem.Click
         SFD_enregistrement.ShowDialog()
@@ -110,8 +123,9 @@ Public Class Main
         Dim Path As String = OFD_chargement.InitialDirectory + OFD_chargement.FileName
         DeSerialisation(Path)
         Maj_Treeview()
-        ReseauDePetri.EnvoyerReseauChange("Le fichier " & Path & " a été convenablement chargé." & vbCrLf)
+        ReseauDePetri.EnvoyerReseauChange("Le fichier " & Path & " a été convenablement chargé." & vbCrLf, Color.Maroon)
         ReseauDePetri.GenererEtat()
+        ReseauDePetri.EnvoyerReseauChange("**** Fin de l'importation ****" & vbCrLf, Color.Maroon)
         RaiseEvent MajDataBinding(Me, New MajDataBindingEventArgs())
     End Sub
     Private Sub SauvegarderLesDonnéesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SauvegarderLesDonnéesToolStripMenuItem.Click

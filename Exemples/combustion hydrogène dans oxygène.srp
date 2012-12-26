@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<Reseau xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TableauPlace>
+    <Place>
+      <nom>Hydrogène</nom>
+      <nombreJeton>35</nombreJeton>
+    </Place>
+    <Place>
+      <nom>Oxygène</nom>
+      <nombreJeton>10</nombreJeton>
+    </Place>
+    <Place>
+      <nom>Eau</nom>
+      <nombreJeton>0</nombreJeton>
+    </Place>
+  </TableauPlace>
+  <TableauTransition>
+    <Transition>
+      <nom>Combustion</nom>
+    </Transition>
+  </TableauTransition>
+  <TableauArc>
+    <Arc>
+      <place>
+        <nom>Eau</nom>
+        <nombreJeton>0</nombreJeton>
+      </place>
+      <transition>
+        <nom>Combustion</nom>
+      </transition>
+      <multiplicite>1</multiplicite>
+      <sens>Transition vers place</sens>
+    </Arc>
+    <Arc>
+      <place>
+        <nom>Hydrogène</nom>
+        <nombreJeton>35</nombreJeton>
+      </place>
+      <transition>
+        <nom>Combustion</nom>
+      </transition>
+      <multiplicite>2</multiplicite>
+      <sens>Place vers transition</sens>
+    </Arc>
+    <Arc>
+      <place>
+        <nom>Oxygène</nom>
+        <nombreJeton>10</nombreJeton>
+      </place>
+      <transition>
+        <nom>Combustion</nom>
+      </transition>
+      <multiplicite>1</multiplicite>
+      <sens>Place vers transition</sens>
+    </Arc>
+  </TableauArc>
+  <TableauTransitionValidable />
+  <TableauArcRentrant />
+  <TableauArcSortant />
+</Reseau>

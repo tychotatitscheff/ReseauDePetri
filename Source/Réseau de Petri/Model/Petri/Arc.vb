@@ -18,6 +18,7 @@ Public Class Arc
     <XmlElement("Transition")> Private _Transition As Transition
     <XmlElement("Multiplicité")> Private _multiplicite As UInteger
     <XmlElement("Sens")> Private _sens As E_Sens
+    '<XmlElement("Hash")> Private Hash As Integer = Me.GetHashCode
 #End Region
 #Region "Constructeurs (1 surcharge)"
     Public Sub New()

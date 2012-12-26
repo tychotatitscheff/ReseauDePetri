@@ -60,7 +60,7 @@
       <nom>ppII</nom>
     </Transition>
     <Transition>
-      <nom>desintegration neutrino</nom>
+      <nom>desinte. neutrino</nom>
     </Transition>
     <Transition>
       <nom>transmutation Be</nom>
@@ -79,7 +79,7 @@
         <nombreJeton>0</nombreJeton>
       </place>
       <transition>
-        <nom>desintegration neutrino</nom>
+        <nom>desinte. neutrino</nom>
       </transition>
       <multiplicite>1</multiplicite>
       <sens>Place vers transition</sens>
@@ -90,7 +90,7 @@
         <nombreJeton>4000</nombreJeton>
       </place>
       <transition>
-        <nom>desintegration neutrino</nom>
+        <nom>desinte. neutrino</nom>
       </transition>
       <multiplicite>2</multiplicite>
       <sens>Transition vers place</sens>
@@ -101,7 +101,7 @@
         <nombreJeton>0</nombreJeton>
       </place>
       <transition>
-        <nom>desintegration neutrino</nom>
+        <nom>desinte. neutrino</nom>
       </transition>
       <multiplicite>1</multiplicite>
       <sens>Transition vers place</sens>
@@ -112,7 +112,7 @@
         <nombreJeton>0</nombreJeton>
       </place>
       <transition>
-        <nom>desintegration neutrino</nom>
+        <nom>desinte. neutrino</nom>
       </transition>
       <multiplicite>1</multiplicite>
       <sens>Transition vers place</sens>

@@ -29,7 +29,13 @@ Public Class Transition
 #End Region
 #Region "Surcharge de ToString()"
     Public Overrides Function ToString() As String
-        Return _nom & " [" & MyBase.GetHashCode & "]"
+        Dim hash As String
+        If Main.ChB_verbose.Checked Then
+            hash = " [" & MyBase.GetHashCode & "]"
+        Else
+            hash = ""
+        End If
+        Return _nom & hash
     End Function
 #End Region
 End Class

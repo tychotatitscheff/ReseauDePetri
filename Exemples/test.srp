@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Reseau xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TableauPlace>
+    <Place>
+      <nom>Sa</nom>
+      <nombreJeton>0</nombreJeton>
+      <hashCode>31534420</hashCode>
+    </Place>
+  </TableauPlace>
+  <TableauTransition />
+  <TableauArc />
+  <TableauTransitionValidable />
+  <TableauArcRentrant />
+  <TableauArcSortant />
+</Reseau>

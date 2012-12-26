@@ -9,6 +9,7 @@ Public Class Place
 #Region "Attributs privés"
     <XmlAttribute("Nom")> Private _nom As String
     <XmlElement("Nombre de jeton")> Private _nombreJeton As UInteger
+    '<XmlElement("Hash")> Private _hash As Integer = Me.GetHashCode
 #End Region
 #Region "Constructeur"
     Public Sub New()
@@ -36,6 +37,14 @@ Public Class Place
             _nombreJeton = p_nombre
         End Set
     End Property
+    'Public Property hashCode() As Integer
+    '    Get
+    '        Return _hash
+    '    End Get
+    '    Set(ByVal p_nombre As Integer)
+    '        _hash = p_nombre
+    '    End Set
+    'End Property
 #End Region
 #Region "Méthodes d'incrementation et décrementation des jetons"
     Public Sub AugmenterDeN(ByVal n As UInteger)
@@ -47,7 +56,13 @@ Public Class Place
 #End Region
 #Region "Surcharge de ToString()"
     Public Overrides Function ToString() As String
-        Return _nom & " [" & MyBase.GetHashCode & "]"
+        Dim hash As String
+        If Main.ChB_verbose.Checked Then
+            hash = " [" & MyBase.GetHashCode & "]"
+        Else
+            hash = ""
+        End If
+        Return _nom & hash
     End Function
 #End Region
 End Class
