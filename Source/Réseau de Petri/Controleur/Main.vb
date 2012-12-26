@@ -27,7 +27,9 @@ Public Class Main
     End Sub
 #End Region
 #Region "Mise à jour"
-    Private Sub MAJ_DataBindingList(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load, B_AddPlace.Click, B_AddTrans.Click
+    Public Delegate Sub MajDataBindingEventHandler(ByVal sender As Object, ByVal e As MajDataBindingEventArgs)
+    Public Event MajDataBinding As MajDataBindingEventHandler
+    Private Sub MAJ_DataBindingList(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load, B_AddPlace.Click, B_AddTrans.Click, Me.MajDataBinding
         Me.CB_place.DataSource = ReseauDePetri.TableauPlace
         Me.CB_trans.DataSource = ReseauDePetri.TableauTransition
     End Sub
@@ -110,6 +112,7 @@ Public Class Main
         Maj_Treeview()
         ReseauDePetri.EnvoyerReseauChange("Le fichier " & Path & " a été convenablement chargé." & vbCrLf)
         ReseauDePetri.GenererEtat()
+        RaiseEvent MajDataBinding(Me, New MajDataBindingEventArgs())
     End Sub
     Private Sub SauvegarderLesDonnéesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SauvegarderLesDonnéesToolStripMenuItem.Click
 

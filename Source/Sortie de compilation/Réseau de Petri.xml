@@ -57,7 +57,7 @@ RéseaudePetri
 	<summary>
  Cette classe permet la création d'un nouvel évenement.
  </summary>
-	<remarks>Il serait préférable d'impléménter une veriatble classe d'erreur.</remarks>
+	<remarks></remarks>
 </member>
 </members>
 </doc>

@@ -1,7 +1,7 @@
 ﻿''' <summary>
 ''' Cette classe permet la création d'un nouvel évenement.
 ''' </summary>
-''' <remarks>Il serait préférable d'impléménter une veriatble classe d'erreur.</remarks>
+''' <remarks></remarks>
 Public Class ChangementReseauEventArgs
     Inherits EventArgs 'Elle hérite donc de la classe System.EventArgs qui est la classe de base des classes contenant des données d'événement.
     Private textEvent As String = Nothing

@@ -130,6 +130,7 @@
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Model\Evenement\MajDataBindingEventArgs.vb" />
     <Compile Include="Model\Petri\Arc.vb" />
     <Compile Include="Model\Petri\Reseau.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
