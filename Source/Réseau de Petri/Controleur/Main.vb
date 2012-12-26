@@ -67,12 +67,9 @@ Public Class Main
         RTB_Console.AppendText(vbCrLf)
         RTB_Console.SelectionIndent = 20
         ReseauDePetri.Maj_TransitionValidable()
-        RTB_Console.AppendText(vbCrLf)
         While ReseauDePetri.TableauTransitionValidable.Count > 0
             ReseauDePetri.ValiderTransition(ReseauDePetri.ChoixHasard_TransitionValidable())
-            RTB_Console.AppendText(vbCrLf)
             ReseauDePetri.Maj_TransitionValidable()
-            RTB_Console.AppendText(vbCrLf)
         End While
         RTB_Console.SelectionIndent = 0
         ReseauDePetri.GenererEtat()
@@ -113,6 +110,9 @@ Public Class Main
         Maj_Treeview()
         ReseauDePetri.EnvoyerReseauChange("Le fichier " & Path & " a été convenablement chargé." & vbCrLf)
         ReseauDePetri.GenererEtat()
+    End Sub
+    Private Sub SauvegarderLesDonnéesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SauvegarderLesDonnéesToolStripMenuItem.Click
+
     End Sub
 #End Region
 #Region "Serialisation et déserialisation"

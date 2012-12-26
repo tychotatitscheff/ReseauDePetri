@@ -89,8 +89,9 @@ Public Class Reseau
         T_ArcRentrant.Clear()
 
         'Gestion des évenements
-        EnvoyerReseauChange("Mise à jour des arcs rentrants dans la transition d'hashcode " & CStr(trans.GetHashCode) & " et de nom '" & trans.nom & "'." & vbCrLf, Color.DarkMagenta)
-
+        If Main.ChB_verbose.Checked Then
+            EnvoyerReseauChange("Mise à jour des arcs rentrants dans la transition d'hashcode " & CStr(trans.GetHashCode) & " et de nom '" & trans.nom & "'." & vbCrLf, Color.DarkMagenta)
+        End If
         'On parcourt les élements de T_Arc
         For Each _arc As Arc In T_Arc
             'Utilisation de Is pour comparer deux instances d'objet
@@ -103,7 +104,9 @@ Public Class Reseau
         T_ArcSortant.Clear()
 
         'Gestion des évenements
-        EnvoyerReseauChange("Mise à jour des arcs sortants dans la transition d'hashcode " & CStr(trans.GetHashCode) & " et de nom '" & trans.nom & "'." & vbCrLf, Color.DarkMagenta)
+        If Main.ChB_verbose.Checked Then
+            EnvoyerReseauChange("Mise à jour des arcs sortants dans la transition d'hashcode " & CStr(trans.GetHashCode) & " et de nom '" & trans.nom & "'." & vbCrLf, Color.DarkMagenta)
+        End If
 
         'On parcourt les élements de T_Arc
         For Each _arc As Arc In T_Arc
@@ -118,7 +121,10 @@ Public Class Reseau
         Dim is_validable As Boolean
 
         'Gestion des évenements
-        EnvoyerReseauChange("Mise à jour des transitions validables dans la transition." & vbCrLf)
+        If Main.ChB_verbose.Checked Then
+            EnvoyerReseauChange("Mise à jour des transitions validables dans la transition." & vbCrLf)
+            EnvoyerReseauChange(vbCrLf)
+        End If
 
         'On parcourt les élements de T_Transition
         For Each _trans As Transition In T_Transition
@@ -141,21 +147,30 @@ Public Class Reseau
         Dim rand As New Random()
         Dim numTrans As Integer = CInt(rand.Next(0, T_TransitionValidable.Count))
         'Gestion des évenements
-        EnvoyerReseauChange("Choix au hasard d'une transition dans les transitions validables." & vbCrLf & "Il y'a " & CStr(T_TransitionValidable.Count) & " transition(s) validable(s) et je choisis la " & CStr(numTrans + 1) & " eme (ière)." & vbCrLf & "Il s'agit de la transition d'hashcode " & CStr(T_TransitionValidable.Item(numTrans).GetHashCode) & " et de nom '" & T_TransitionValidable.Item(numTrans).nom & "'." & vbCrLf, Color.DarkRed)
+        If Main.ChB_verbose.Checked Then
+            EnvoyerReseauChange("Choix au hasard d'une transition dans les transitions validables." & vbCrLf & "Il y'a " & CStr(T_TransitionValidable.Count) & " transition(s) validable(s) et je choisis la " & CStr(numTrans + 1) & " eme (ière)." & vbCrLf & "Il s'agit de la transition d'hashcode " & CStr(T_TransitionValidable.Item(numTrans).GetHashCode) & " et de nom '" & T_TransitionValidable.Item(numTrans).nom & "'." & vbCrLf, Color.DarkRed)
+        End If
         Return T_TransitionValidable.Item(numTrans)
     End Function
     Public Sub ValiderTransition(ByVal trans As Transition)
         Me.Maj_ArcRentrant(trans)
         For Each _arcRentrant As Arc In T_ArcRentrant
             _arcRentrant.place.DiminuerDeN(_arcRentrant.multiplicite)
-            EnvoyerReseauChange("J'enlève " & CStr(_arcRentrant.multiplicite) & " jeton(s) à la place d'hashcode " & CStr(_arcRentrant.place.GetHashCode) & " et de nom '" & _arcRentrant.place.nom & "'." & vbCrLf, Color.DarkOliveGreen)
+            If Main.ChB_verbose.Checked Then
+                EnvoyerReseauChange("J'enlève " & CStr(_arcRentrant.multiplicite) & " jeton(s) à la place d'hashcode " & CStr(_arcRentrant.place.GetHashCode) & " et de nom '" & _arcRentrant.place.nom & "'." & vbCrLf, Color.DarkOliveGreen)
+            End If
         Next
 
         Me.Maj_ArcSortant(trans)
         For Each _arcSortant As Arc In T_ArcSortant
             _arcSortant.place.AugmenterDeN(_arcSortant.multiplicite)
-            EnvoyerReseauChange("Je rajoute " & CStr(_arcSortant.multiplicite) & " jeton(s) à la place d'hashcode " & CStr(_arcSortant.place.GetHashCode) & " et de nom '" & _arcSortant.place.nom & "'." & vbCrLf, Color.DarkOliveGreen)
+            If Main.ChB_verbose.Checked Then
+                EnvoyerReseauChange("Je rajoute " & CStr(_arcSortant.multiplicite) & " jeton(s) à la place d'hashcode " & CStr(_arcSortant.place.GetHashCode) & " et de nom '" & _arcSortant.place.nom & "'." & vbCrLf, Color.DarkOliveGreen)
+            End If
         Next
+        If Main.ChB_verbose.Checked Then
+            EnvoyerReseauChange(vbCrLf)
+        End If
     End Sub
 #End Region
 #Region "Fonction d'affichage et de retour"

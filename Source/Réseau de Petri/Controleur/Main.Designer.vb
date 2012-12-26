@@ -22,6 +22,7 @@ Partial Class Main
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.Label6 = New System.Windows.Forms.Label()
         Me.CB_Sens = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -34,7 +35,7 @@ Partial Class Main
         Me.Label9 = New System.Windows.Forms.Label()
         Me.B_AddArc = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.ChB_verbose = New System.Windows.Forms.CheckBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.B_Go = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -69,6 +70,8 @@ Partial Class Main
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.OFD_chargement = New System.Windows.Forms.OpenFileDialog()
         Me.SFD_enregistrement = New System.Windows.Forms.SaveFileDialog()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TB_etapeMax = New System.Windows.Forms.TextBox()
         Me.TabaArc.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -200,7 +203,9 @@ Partial Class Main
         Me.GroupBox3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                     Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox3.Controls.Add(Me.CheckBox1)
+        Me.GroupBox3.Controls.Add(Me.TB_etapeMax)
+        Me.GroupBox3.Controls.Add(Me.Label10)
+        Me.GroupBox3.Controls.Add(Me.ChB_verbose)
         Me.GroupBox3.Controls.Add(Me.Label8)
         Me.GroupBox3.Controls.Add(Me.B_Go)
         Me.GroupBox3.Controls.Add(Me.Label7)
@@ -213,20 +218,21 @@ Partial Class Main
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Paramêtres de simulation"
         '
-        'CheckBox1
+        'ChB_verbose
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(151, 92)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(246, 21)
-        Me.CheckBox1.TabIndex = 4
-        Me.CheckBox1.Text = "Afficher les données de simulation"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.ChB_verbose.AutoSize = True
+        Me.ChB_verbose.Location = New System.Drawing.Point(9, 71)
+        Me.ChB_verbose.Name = "ChB_verbose"
+        Me.ChB_verbose.Size = New System.Drawing.Size(294, 38)
+        Me.ChB_verbose.TabIndex = 4
+        Me.ChB_verbose.Text = "Afficher les données de simulation " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(déconseillé pour les longues simulations)"
+        Me.ChB_verbose.UseVisualStyleBackColor = True
         '
         'Label8
         '
         Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label8.AutoSize = True
+        Me.Label8.ForeColor = System.Drawing.SystemColors.AppWorkspace
         Me.Label8.Location = New System.Drawing.Point(305, 30)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(128, 17)
@@ -248,6 +254,7 @@ Partial Class Main
         'Label7
         '
         Me.Label7.AutoSize = True
+        Me.Label7.ForeColor = System.Drawing.SystemColors.AppWorkspace
         Me.Label7.Location = New System.Drawing.Point(6, 30)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(121, 17)
@@ -258,6 +265,7 @@ Partial Class Main
         '
         Me.TrackBar1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TrackBar1.Enabled = False
         Me.TrackBar1.Location = New System.Drawing.Point(151, 30)
         Me.TrackBar1.Maximum = 5000
         Me.TrackBar1.Minimum = 1
@@ -548,6 +556,23 @@ Partial Class Main
         '
         Me.SFD_enregistrement.Filter = "Fichier de simulation | *.srp | Tous les fichiers | *.*"
         '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(9, 150)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(156, 17)
+        Me.Label10.TabIndex = 5
+        Me.Label10.Text = "Etapes max simulation :"
+        '
+        'TB_etapeMax
+        '
+        Me.TB_etapeMax.Location = New System.Drawing.Point(227, 150)
+        Me.TB_etapeMax.Name = "TB_etapeMax"
+        Me.TB_etapeMax.Size = New System.Drawing.Size(100, 22)
+        Me.TB_etapeMax.TabIndex = 6
+        Me.TB_etapeMax.Text = "1000"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -556,6 +581,7 @@ Partial Class Main
         Me.ClientSize = New System.Drawing.Size(1018, 638)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.TableLayoutPanel1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Main"
         Me.Text = "Réseau de Petri - Fenètre principale"
         Me.TabaArc.ResumeLayout(False)
@@ -620,10 +646,12 @@ Partial Class Main
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents LancerLaSimulationToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents ChB_verbose As System.Windows.Forms.CheckBox
     Friend WithEvents SauvegarderLaSimulationToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SauvegarderLesDonnéesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OFD_chargement As System.Windows.Forms.OpenFileDialog
     Friend WithEvents SFD_enregistrement As System.Windows.Forms.SaveFileDialog
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents TB_etapeMax As System.Windows.Forms.TextBox
 
 End Class

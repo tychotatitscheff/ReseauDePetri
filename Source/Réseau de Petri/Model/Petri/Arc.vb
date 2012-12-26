@@ -10,7 +10,7 @@ Public Class Arc
 #Region "Enumération définissant le sens"
     Public Enum E_Sens As Integer
         <XmlEnum("Place vers transition")> PlaceVersTransition = 1
-        <XmlEnum("Tarnsition vers place")> TransitionVersPlace = 2
+        <XmlEnum("Transition vers place")> TransitionVersPlace = 2
     End Enum
 #End Region
 #Region "Attributs Privés"

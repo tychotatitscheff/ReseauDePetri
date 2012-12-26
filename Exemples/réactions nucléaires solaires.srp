@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<Reseau xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TableauPlace>
+    <Place>
+      <nom>Neutrino</nom>
+      <nombreJeton>0</nombreJeton>
+    </Place>
+    <Place>
+      <nom>Helium 3</nom>
+      <nombreJeton>0</nombreJeton>
+    </Place>
+    <Place>
+      <nom>Helium 4</nom>
+      <nombreJeton>0</nombreJeton>
+    </Place>
+    <Place>
+      <nom>Proton</nom>
+      <nombreJeton>2000</nombreJeton>
+    </Place>
+    <Place>
+      <nom>Deutérieum</nom>
+      <nombreJeton>2000</nombreJeton>
+    </Place>
+    <Place>
+      <nom>Positron</nom>
+      <nombreJeton>0</nombreJeton>
+    </Place>
+    <Place>
+      <nom>Neutron</nom>
+      <nombreJeton>0</nombreJeton>
+    </Place>
+    <Place>
+      <nom>Berilium 7</nom>
+      <nombreJeton>0</nombreJeton>
+    </Place>
+    <Place>
+      <nom>Lithium 7</nom>
+      <nombreJeton>0</nombreJeton>
+    </Place>
+    <Place>
+      <nom>Electron</nom>
+      <nombreJeton>4000</nombreJeton>
+    </Place>
+    <Place>
+      <nom>Rayon gamma</nom>
+      <nombreJeton>4000</nombreJeton>
+    </Place>
+  </TableauPlace>
+  <TableauTransition>
+    <Transition>
+      <nom>pp</nom>
+    </Transition>
+    <Transition>
+      <nom>pe</nom>
+    </Transition>
+    <Transition>
+      <nom>ppI</nom>
+    </Transition>
+    <Transition>
+      <nom>ppII</nom>
+    </Transition>
+    <Transition>
+      <nom>desintegration neutrino</nom>
+    </Transition>
+    <Transition>
+      <nom>transmutation Be</nom>
+    </Transition>
+    <Transition>
+      <nom>desintegration Li</nom>
+    </Transition>
+    <Transition>
+      <nom>couple positron éléctron</nom>
+    </Transition>
+  </TableauTransition>
+  <TableauArc>
+    <Arc>
+      <place>
+        <nom>Neutrino</nom>
+        <nombreJeton>0</nombreJeton>
+      </place>
+      <transition>
+        <nom>desintegration neutrino</nom>
+      </transition>
+      <multiplicite>1</multiplicite>
+      <sens>Place vers transition</sens>
+    </Arc>
+    <Arc>
+      <place>
+        <nom>Rayon gamma</nom>
+        <nombreJeton>4000</nombreJeton>
+      </place>
+      <transition>
+        <nom>desintegration neutrino</nom>
+      </transition>
+      <multiplicite>2</multiplicite>
+      <sens>Transition vers place</sens>
+    </Arc>
+    <Arc>
+      <place>
+        <nom>Positron</nom>
+        <nombreJeton>0</nombreJeton>
+      </place>
+      <transition>
+        <nom>desintegration neutrino</nom>
+      </transition>
+      <multiplicite>1</multiplicite>
+      <sens>Transition vers place</sens>
+    </Arc>
+    <Arc>
+      <place>
+        <nom>Neutrino</nom>
+        <nombreJeton>0</nombreJeton>
+      </place>
+      <transition>
+        <nom>desintegration neutrino</nom>
+      </transition>
+      <multiplicite>1</multiplicite>
+      <sens>Transition vers place</sens>
+    </Arc>
+    <Arc>
+      <place>
+        <nom>Deutérieum</nom>
+        <nombreJeton>2000</nombreJeton>
+      </place>
+      <transition>
+        <nom>pp</nom>
+      </transition>
+      <multiplicite>1</multiplicite>
+      <sens>Transition vers place</sens>
+    </Arc>
+    <Arc>
+      <place>
+        <nom>Neutrino</nom>
+        <nombreJeton>0</nombreJeton>
+      </place>
+      <transition>
+        <nom>pp</nom>
+      </transition>
+      <multiplicite>1</multiplicite>
+      <sens>Transition vers place</sens>
+    </Arc>
+    <Arc>
+      <place>
+        <nom>Positron</nom>
+        <nombreJeton>0</nombreJeton>
+      </place>
+      <transition>
+        <nom>pp</nom>
+      </transition>
+      <multiplicite>1</multiplicite>
+      <sens>Transition vers place</sens>
+    </Arc>
+    <Arc>
+      <place>
+        <nom>Proton</nom>
+        <nombreJeton>2000</nombreJeton>
+      </place>
+      <transition>
+        <nom>pp</nom>
+      </transition>
+      <multiplicite>2</multiplicite>
+      <sens>Place vers transition</sens>
+    </Arc>
+    <Arc>
+      <place>
+        <nom>Deutérieum</nom>
+        <nombreJeton>2000</nombreJeton>
+      </place>
+      <transition>
+        <nom>pe</nom>
+      </transition>
+      <multiplicite>1</multiplicite>
+      <sens>Place vers transition</sens>
+    </Arc>
+    <Arc>
+      <place>
+        <nom>Proton</nom>
+        <nombreJeton>2000</nombreJeton>
+      </place>
+      <transition>
+        <nom>pe</nom>
+      </transition>
+      <multiplicite>1</multiplicite>
+      <sens>Place vers transition</sens>
+    </Arc>
+    <Arc>
+      <place>
+        <nom>Helium 3</nom>
+        <nombreJeton>0</nombreJeton>
+      </place>
+      <transition>
+        <nom>pe</nom>
+      </transition>
+      <multiplicite>1</multiplicite>
+      <sens>Transition vers place</sens>
+    </Arc>
+    <Arc>
+      <place>
+        <nom>Rayon gamma</nom>
+        <nombreJeton>4000</nombreJeton>
+      </place>
+      <transition>
+        <nom>pe</nom>
+      </transition>
+      <multiplicite>1</multiplicite>
+      <sens>Transition vers place</sens>
+    </Arc>
+  </TableauArc>
+  <TableauTransitionValidable />
+  <TableauArcRentrant />
+  <TableauArcSortant />
+</Reseau>
