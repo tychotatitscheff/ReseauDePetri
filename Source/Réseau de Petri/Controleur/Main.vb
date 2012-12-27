@@ -108,7 +108,7 @@ Public Class Main
         CB_place.DataSource = ReseauDePetri.TableauPlace
         CB_trans.DataSource = Nothing
         CB_trans.Items.Clear()
-        CB_trans.DataSource = ReseauDePetri.TableauPlace
+        CB_trans.DataSource = ReseauDePetri.TableauTransition
         RaiseEvent MajDataBinding(Me, New MajDataBindingEventArgs())
     End Sub
     Private Sub SauvegarderLaSimulationToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SauvegarderLaSimulationToolStripMenuItem.Click
