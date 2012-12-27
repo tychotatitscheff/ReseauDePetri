@@ -4,7 +4,7 @@
 ''' Elle a un nom et un nombre de jetons.
 ''' </summary>
 ''' <remarks>Pour plus d'information sur la partie théorique : http://fr.wikipedia.org/wiki/R%C3%A9seau_de_Petri </remarks>
-<DataContract(IsReference:=True)>
+<DataContract(IsReference:=True, Name:="Place")> _
 Public Class Place
 #Region "Attributs privés"
     Private _nom As String

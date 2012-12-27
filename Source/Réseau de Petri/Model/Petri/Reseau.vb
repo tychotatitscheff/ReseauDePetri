@@ -1,11 +1,11 @@
 ﻿Imports System.ComponentModel 'Importation necessaire à l'utilisation des bindingList
-Imports System.Runtime.Serialization
+Imports System.Runtime.Serialization 'Afin de mettre en place une sérialisation avancée
 ''' <summary>
 ''' La classe réseau rassemble les différents éléments du réseau. Elle comprend donc les listes de place, de transition et d'arc ainsi que les différentes méthodes permettant de mettre à jour le réseau, de selectionner une transition au hasard et de la valider.
 ''' Elle comprend également la gestion des évenements pour afficher le processus de simulation.
 ''' </summary>
 ''' <remarks>Pour plus d'information sur la partie théorique : http://fr.wikipedia.org/wiki/R%C3%A9seau_de_Petri </remarks>
-<DataContract(Name:="Reseau")>
+<DataContract(Name:="Reseau")> _
 Public Class Reseau
 #Region "Attributs privés"
     ''' <remarks>L'utilisation de BindingList se justifie pour syncroniser la liste des places avec le combobox de la fenètre principale</remarks>
@@ -62,7 +62,7 @@ Public Class Reseau
             T_Transition = value
         End Set
     End Property
-    <DataMember(Name:="Tableau_des_arcs", Order:=2)>
+    <DataMember(Name:="Tableau_des_arcs", Order:=3)>
     Public Property TableauArc() As List(Of Arc)
         Get
             Return T_Arc
@@ -89,8 +89,9 @@ Public Class Reseau
 #End Region
 #Region "Fonctions de mises à jour"
     Private Sub Maj_ArcRentrant(ByVal trans As Transition)
-        T_ArcRentrant.Clear()
-
+        If T_ArcRentrant IsNot Nothing Then
+            T_ArcRentrant.Clear()
+        End If
         'Gestion des évenements
         If Main.ChB_verbose.Checked Then
             EnvoyerReseauChange("Mise à jour des arcs rentrants dans la transition d'hashcode " & CStr(trans.GetHashCode) & " et de nom '" & trans.nom & "'." & vbCrLf, Color.DarkMagenta)
@@ -104,8 +105,9 @@ Public Class Reseau
         Next
     End Sub
     Private Sub Maj_ArcSortant(ByVal trans As Transition)
-        T_ArcSortant.Clear()
-
+        If T_ArcSortant IsNot Nothing Then
+            T_ArcSortant.Clear()
+        End If
         'Gestion des évenements
         If Main.ChB_verbose.Checked Then
             EnvoyerReseauChange("Mise à jour des arcs sortants dans la transition d'hashcode " & CStr(trans.GetHashCode) & " et de nom '" & trans.nom & "'." & vbCrLf, Color.DarkMagenta)
@@ -120,7 +122,9 @@ Public Class Reseau
         Next
     End Sub
     Public Sub Maj_TransitionValidable()
-        T_TransitionValidable.Clear()
+        If T_TransitionValidable IsNot Nothing Then
+            T_TransitionValidable.Clear()
+        End If
         Dim is_validable As Boolean
 
         'Gestion des évenements

@@ -4,6 +4,7 @@ Imports System.ComponentModel 'Importation necessaire à l'utilisation des bindi
 Imports System.Collections.Generic
 Imports System.IO
 Imports System.Runtime.Serialization
+Imports System.Xml
 #End Region
 ''' <summary>
 ''' Cette classe réalise à la fois la vue et à la fois le controlleur principale de l'application.
@@ -114,19 +115,27 @@ Public Class Main
     Private Sub SauvegarderLaSimulationToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SauvegarderLaSimulationToolStripMenuItem.Click
         SFD_enregistrement.ShowDialog()
         Dim Path As String = SFD_enregistrement.InitialDirectory + SFD_enregistrement.FileName
-        Serialisation(Path)
-        ReseauDePetri.EnvoyerReseauChange("Le fichier " & Path & " a été convenablement sauvegardé." & vbCrLf)
+        If Path <> "" Then
+            Serialisation(Path)
+            ReseauDePetri.EnvoyerReseauChange("Le fichier " & Path & " a été convenablement sauvegardé." & vbCrLf)
+        Else
+            ReseauDePetri.EnvoyerReseauChange("Sauvegarde annulée." & vbCrLf, Color.Maroon)
+        End If
     End Sub
 
     Private Sub ChargerSimulationToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChargerSimulationToolStripMenuItem.Click
         OFD_chargement.ShowDialog()
         Dim Path As String = OFD_chargement.InitialDirectory + OFD_chargement.FileName
-        DeSerialisation(Path)
-        Maj_Treeview()
-        ReseauDePetri.EnvoyerReseauChange("Le fichier " & Path & " a été convenablement chargé." & vbCrLf, Color.Maroon)
-        ReseauDePetri.GenererEtat()
-        ReseauDePetri.EnvoyerReseauChange("**** Fin de l'importation ****" & vbCrLf, Color.Maroon)
-        RaiseEvent MajDataBinding(Me, New MajDataBindingEventArgs())
+        If Path <> "" Then
+            DeSerialisation(Path)
+            Maj_Treeview()
+            ReseauDePetri.EnvoyerReseauChange("Le fichier " & Path & " a été convenablement chargé." & vbCrLf, Color.Maroon)
+            ReseauDePetri.GenererEtat()
+            ReseauDePetri.EnvoyerReseauChange("**** Fin de l'importation ****" & vbCrLf, Color.Maroon)
+            RaiseEvent MajDataBinding(Me, New MajDataBindingEventArgs())
+        Else
+            ReseauDePetri.EnvoyerReseauChange("Importation annulée." & vbCrLf, Color.Maroon)
+        End If
     End Sub
     Private Sub SauvegarderLesDonnéesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SauvegarderLesDonnéesToolStripMenuItem.Click
 
@@ -134,7 +143,12 @@ Public Class Main
 #End Region
 #Region "Serialisation et déserialisation"
     Public Sub Serialisation(ByVal _path As String)
-        Dim xmlFichier As FileStream = File.Create(_path)
+        Dim pref As New XmlWriterSettings()
+        pref.Indent = True
+        pref.IndentChars = vbTab
+        pref.NamespaceHandling = NamespaceHandling.OmitDuplicates
+        pref.OmitXmlDeclaration = False
+        Dim xmlFichier As XmlWriter = XmlWriter.Create(_path, pref)
         Dim bf_reseau As DataContractSerializer = New DataContractSerializer(GetType(Reseau))
         bf_reseau.WriteObject(xmlFichier, ReseauDePetri)
         xmlFichier.Close()

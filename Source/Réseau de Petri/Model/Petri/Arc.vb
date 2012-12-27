@@ -5,7 +5,7 @@
 ''' Nous avons fait le choix d'implémenter la multiplicité et ainsi de rajouter un attribut multiplicité.
 ''' </summary>
 ''' <remarks>Pour plus d'information sur la partie théorique : http://fr.wikipedia.org/wiki/R%C3%A9seau_de_Petri </remarks>
-<DataContract(IsReference:=True)>
+<DataContract(IsReference:=False, Name:="Arc")> _
 Public Class Arc
 #Region "Enumération définissant le sens"
     Public Enum E_Sens As Integer
@@ -55,7 +55,7 @@ Public Class Arc
             _Transition = p_trans
         End Set
     End Property
-    <DataMember(Name:="Multiplicite_de_l'arc", Order:=3)>
+    <DataMember(Name:="Multiplicite", Order:=3)>
     Public Property multiplicite() As UInteger
         Get
             Return _multiplicite

@@ -1,5 +1,10 @@
 ﻿Imports System.Runtime.Serialization
-<DataContract(IsReference:=True)>
+''' <summary>
+''' La classe transition représente les transitions dans un réseau de pétri.
+''' Elle ne comporte qu'un seul attribut privé, son nom.
+''' </summary>
+''' <remarks>Pour plus d'information sur la partie théorique : http://fr.wikipedia.org/wiki/R%C3%A9seau_de_Petri </remarks>
+<DataContract(IsReference:=True, Name:="Transition")> _
 Public Class Transition
 #Region "Attribut Privé"
     Private _nom As String
