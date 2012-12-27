@@ -102,6 +102,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -201,6 +202,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="RDP.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Serialisation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

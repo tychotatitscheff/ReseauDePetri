@@ -1,15 +1,14 @@
-﻿Imports System.Xml.Serialization
+﻿Imports System.Runtime.Serialization
 ''' <summary>
 ''' La classe Place represente les place dans le réseau de Pétri.
 ''' Elle a un nom et un nombre de jetons.
 ''' </summary>
 ''' <remarks>Pour plus d'information sur la partie théorique : http://fr.wikipedia.org/wiki/R%C3%A9seau_de_Petri </remarks>
-<Serializable()>
+<DataContract(IsReference:=True)>
 Public Class Place
 #Region "Attributs privés"
-    <XmlAttribute("Nom")> Private _nom As String
-    <XmlElement("Nombre de jeton")> Private _nombreJeton As UInteger
-    '<XmlElement("Hash")> Private _hash As Integer = Me.GetHashCode
+    Private _nom As String
+    Private _nombreJeton As UInteger
 #End Region
 #Region "Constructeur"
     Public Sub New()
@@ -21,6 +20,7 @@ Public Class Place
     End Sub
 #End Region
 #Region "Properties"
+    <DataMember(Name:="Nom_de_la_place", Order:=1, EmitDefaultValue:=True)>
     Public Property nom() As String
         Get
             Return _nom
@@ -29,6 +29,7 @@ Public Class Place
             _nom = p_nom
         End Set
     End Property
+    <DataMember(Name:="Nombre_de_Jeton", Order:=1, EmitDefaultValue:=False)>
     Public Property nombreJeton() As UInteger
         Get
             Return _nombreJeton
@@ -37,14 +38,6 @@ Public Class Place
             _nombreJeton = p_nombre
         End Set
     End Property
-    'Public Property hashCode() As Integer
-    '    Get
-    '        Return _hash
-    '    End Get
-    '    Set(ByVal p_nombre As Integer)
-    '        _hash = p_nombre
-    '    End Set
-    'End Property
 #End Region
 #Region "Méthodes d'incrementation et décrementation des jetons"
     Public Sub AugmenterDeN(ByVal n As UInteger)

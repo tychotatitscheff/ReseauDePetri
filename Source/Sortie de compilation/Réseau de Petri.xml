@@ -13,12 +13,6 @@ RéseaudePetri
  Nous avons fait le choix d'implémenter la multiplicité et ainsi de rajouter un attribut multiplicité.
  </summary>
 	<remarks>Pour plus d'information sur la partie théorique : http://fr.wikipedia.org/wiki/R%C3%A9seau_de_Petri </remarks>
-</member><member name="T:RDP.Transition">
-	<summary>
- La classe transition représente les transitions dans un réseau de pétri.
- Elle ne comporte qu'un seul attribut privé, son nom.
- </summary>
-	<remarks>Pour plus d'information sur la partie théorique : http://fr.wikipedia.org/wiki/R%C3%A9seau_de_Petri </remarks>
 </member><member name="F:RDP.Reseau.T_Place">
 	<remarks>L'utilisation de BindingList se justifie pour syncroniser la liste des places avec le combobox de la fenètre principale</remarks>
 </member><member name="F:RDP.Reseau.T_Transition">

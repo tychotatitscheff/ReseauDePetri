@@ -1,24 +1,23 @@
-﻿Imports System.Xml.Serialization
+﻿Imports System.Runtime.Serialization
 ''' <summary>
 ''' Cette classe définit les arcs orientés reliant place et transition.
 ''' Elle comporte trois éléments, une place, une transition et un sens ce qui impose la création d'une enumération "sens".
 ''' Nous avons fait le choix d'implémenter la multiplicité et ainsi de rajouter un attribut multiplicité.
 ''' </summary>
 ''' <remarks>Pour plus d'information sur la partie théorique : http://fr.wikipedia.org/wiki/R%C3%A9seau_de_Petri </remarks>
-<Serializable()>
+<DataContract(IsReference:=True)>
 Public Class Arc
 #Region "Enumération définissant le sens"
     Public Enum E_Sens As Integer
-        <XmlEnum("Place vers transition")> PlaceVersTransition = 1
-        <XmlEnum("Transition vers place")> TransitionVersPlace = 2
+        PlaceVersTransition = 1
+        TransitionVersPlace = 2
     End Enum
 #End Region
 #Region "Attributs Privés"
-    <XmlElement("Place")> Private _Place As Place
-    <XmlElement("Transition")> Private _Transition As Transition
-    <XmlElement("Multiplicité")> Private _multiplicite As UInteger
-    <XmlElement("Sens")> Private _sens As E_Sens
-    '<XmlElement("Hash")> Private Hash As Integer = Me.GetHashCode
+    Private _Place As Place
+    Private _Transition As Transition
+    Private _multiplicite As UInteger
+    Private _sens As E_Sens
 #End Region
 #Region "Constructeurs (1 surcharge)"
     Public Sub New()
@@ -38,6 +37,7 @@ Public Class Arc
     End Sub
 #End Region
 #Region "Properties"
+    <DataMember(Name:="Nom_de_la_place", Order:=1)>
     Public Property place() As Place
         Get
             Return _Place
@@ -46,6 +46,7 @@ Public Class Arc
             _Place = p_place
         End Set
     End Property
+    <DataMember(Name:="Nom_de_la_transition", Order:=2)>
     Public Property transition() As Transition
         Get
             Return _Transition
@@ -54,6 +55,7 @@ Public Class Arc
             _Transition = p_trans
         End Set
     End Property
+    <DataMember(Name:="Multiplicite_de_l'arc", Order:=3)>
     Public Property multiplicite() As UInteger
         Get
             Return _multiplicite
@@ -62,6 +64,7 @@ Public Class Arc
             _multiplicite = p_mult
         End Set
     End Property
+    <DataMember(Name:="Sens", Order:=4)>
     Public Property sens() As E_Sens
         Get
             Return _sens

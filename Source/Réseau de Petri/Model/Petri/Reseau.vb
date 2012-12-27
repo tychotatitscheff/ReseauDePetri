@@ -1,22 +1,22 @@
 ﻿Imports System.ComponentModel 'Importation necessaire à l'utilisation des bindingList
-Imports System.Xml.Serialization
+Imports System.Runtime.Serialization
 ''' <summary>
 ''' La classe réseau rassemble les différents éléments du réseau. Elle comprend donc les listes de place, de transition et d'arc ainsi que les différentes méthodes permettant de mettre à jour le réseau, de selectionner une transition au hasard et de la valider.
 ''' Elle comprend également la gestion des évenements pour afficher le processus de simulation.
 ''' </summary>
 ''' <remarks>Pour plus d'information sur la partie théorique : http://fr.wikipedia.org/wiki/R%C3%A9seau_de_Petri </remarks>
-<Serializable()>
+<DataContract(Name:="Reseau")>
 Public Class Reseau
 #Region "Attributs privés"
     ''' <remarks>L'utilisation de BindingList se justifie pour syncroniser la liste des places avec le combobox de la fenètre principale</remarks>
-    <XmlElement("Tableau des places")> Private T_Place As New BindingList(Of Place)
+    Private T_Place As New BindingList(Of Place)
     ''' <remarks>L'utilisation de BindingList se justifie pour syncroniser la liste des transition avec le combobox de la fenètre principale</remarks>
-    <XmlElement("Tableau des transitions")> Private T_Transition As New BindingList(Of Transition)
-    <XmlElement("Tableau des arcs")> Private T_Arc As New List(Of Arc)
+    Private T_Transition As New BindingList(Of Transition)
+    Private T_Arc As New List(Of Arc)
 #Region "Attributs necessitant une fonction de mise à jour"
-    <NonSerialized()> Private T_TransitionValidable As New List(Of Transition)
-    <NonSerialized()> Private T_ArcRentrant As New List(Of Arc)
-    <NonSerialized()> Private T_ArcSortant As New List(Of Arc)
+    Private T_TransitionValidable As New List(Of Transition)
+    Private T_ArcRentrant As New List(Of Arc)
+    Private T_ArcSortant As New List(Of Arc)
 #End Region
 #End Region
 #Region "Constructeur"
@@ -26,7 +26,7 @@ Public Class Reseau
 #End Region
 #Region "Gestion évenements"
     Public Delegate Sub ReseauChangeEventHandler(ByVal sender As Object, ByVal e As ChangementReseauEventArgs)
-    <NonSerialized()> Public Event ReseauChange As ReseauChangeEventHandler
+    Public Event ReseauChange As ReseauChangeEventHandler
     Public Sub EnvoyerReseauChange(ByVal texte As String, ByVal couleur As Color)
         Dim e As ChangementReseauEventArgs = New ChangementReseauEventArgs(texte, couleur)
         If Not (e Is Nothing) Then
@@ -44,6 +44,7 @@ Public Class Reseau
     End Sub
 #End Region
 #Region "Properties"
+    <DataMember(Name:="Tableau_des_places", Order:=1)>
     Public Property TableauPlace() As BindingList(Of Place)
         Get
             Return T_Place
@@ -52,6 +53,7 @@ Public Class Reseau
             T_Place = value
         End Set
     End Property
+    <DataMember(Name:="Tableau_des_transitions", Order:=2)>
     Public Property TableauTransition() As BindingList(Of Transition)
         Get
             Return T_Transition
@@ -60,6 +62,7 @@ Public Class Reseau
             T_Transition = value
         End Set
     End Property
+    <DataMember(Name:="Tableau_des_arcs", Order:=2)>
     Public Property TableauArc() As List(Of Arc)
         Get
             Return T_Arc
@@ -182,13 +185,13 @@ Public Class Reseau
         tree.Nodes.Add("Arc", "Arc")
         'Maj des nodes destinés aux places
         For Each _place In T_Place
-                Dim hash As String
-                If Main.ChB_verbose.Checked Then
-                    hash = " [" & _place.GetHashCode & "]"
-                Else
-                    hash = ""
-                End If
-                tree.Nodes("Places").Nodes.Add(CStr(_place.GetHashCode), "'" & _place.nom & "' (" & _place.nombreJeton & " jetons)" & hash)
+            Dim hash As String
+            If Main.ChB_verbose.Checked Then
+                hash = " [" & _place.GetHashCode & "]"
+            Else
+                hash = ""
+            End If
+            tree.Nodes("Places").Nodes.Add(CStr(_place.GetHashCode), "'" & _place.nom & "' (" & _place.nombreJeton & " jetons)" & hash)
         Next
         'Maj des nodes destinés aux transitions
         For Each _trans In T_Transition

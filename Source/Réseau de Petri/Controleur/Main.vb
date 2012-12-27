@@ -1,9 +1,9 @@
 ﻿#Region "Importations namespaces"
 Imports System
 Imports System.ComponentModel 'Importation necessaire à l'utilisation des bindingList
+Imports System.Collections.Generic
 Imports System.IO
-Imports System.Runtime.Serialization.Formatters.Binary
-Imports System.Xml.Serialization
+Imports System.Runtime.Serialization
 #End Region
 ''' <summary>
 ''' Cette classe réalise à la fois la vue et à la fois le controlleur principale de l'application.
@@ -135,16 +135,16 @@ Public Class Main
 #Region "Serialisation et déserialisation"
     Public Sub Serialisation(ByVal _path As String)
         Dim xmlFichier As FileStream = File.Create(_path)
-        Dim bf_reseau As XmlSerializer = New XmlSerializer(GetType(Reseau))
-        bf_reseau.Serialize(xmlFichier, ReseauDePetri)
+        Dim bf_reseau As DataContractSerializer = New DataContractSerializer(GetType(Reseau))
+        bf_reseau.WriteObject(xmlFichier, ReseauDePetri)
         xmlFichier.Close()
     End Sub
     Public Sub DeSerialisation(ByVal _path As String)
-        Dim bf_reseau As XmlSerializer = New XmlSerializer(GetType(Reseau))
+        Dim bf_reseau As DataContractSerializer = New DataContractSerializer(GetType(Reseau))
         Try
             Dim xmlFichier As FileStream = New FileStream(_path, FileMode.Open, FileAccess.Read)
             xmlFichier.Seek(0, IO.SeekOrigin.Begin)
-            ReseauDePetri = CType(bf_reseau.Deserialize(xmlFichier), Reseau)
+            ReseauDePetri = CType(bf_reseau.ReadObject(xmlFichier), Reseau)
             xmlFichier.Close()
         Catch ex As Exception
             MsgBox(ex.Message)
